@@ -21,3 +21,13 @@ difficulté et en general
 
 Rp79EmKvORxaMSQd
 Résumé de ton dictionnaire de Pro :Mot-cléAnalogie RobloxCe que ça fait vraimentStatelessUn bloc de déco simple.Un widget qui ne change jamais d'aspect.StatefulUn script avec des variables (Cash, Temps).Un widget qui peut se redessiner (setState).finalUne valeur fixée quand le serveur démarre.Fixé une seule fois, mais peut être calculé plus tard.constUn réglage d'usine (Gravity, MaxPlayers).Fixé pour toujours, connu à l'avance.extendsUtiliser un "Template" de base.Copier les capacités d'une autre classe.@overrideModifier un script de base.Remplacer une fonction par la tienne.
+
+### ✅ Sécurité & Environnement
+- [x] Configuration du fichier `.env` pour les clés API.
+- [x] Ajout du `.env` au `.gitignore` pour protéger les accès Supabase.
+
+## 🛠️ État d'avancement du Chantier
+
+### ✅ Étape 1 : Modélisation (Le Menu)
+- [x] Création du modèle `Product` dans `lib/models/product.dart`.
+- [x] Mise en place de la conversion JSON pour l'API Platzi. 
