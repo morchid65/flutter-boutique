@@ -1,17 +1,23 @@
-# flutter_boutique
+Rp79EmKvORxaMSQdgestion du panier simulation panier efface les achats historique des simulations d'achat
 
-A new Flutter project.
+authentification 
 
-## Getting Started
+API crud 
 
-This project is a starting point for a Flutter application.
+shareded preference pour favoris ou BDD supabase ou fire base ou sqf lite local 
 
-A few resources to get you started if this is your first Flutter project:
+sauvegarde deux systemes chared preference et BDD ou sqflite 
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+ecran d accueil proposer new article formulaire de recherche
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+moins mais maitrise du code que faire tout sans rien comprendre 
+rajout de fonctionnalité avec maitrise
+
+
+qualité clean code nommage variable objet TDD pour les test à mettre en place (obligatoire)
+
+documentation BDD (MCD) et code (Markdown) commenter ou il y a de la 
+difficulté et en general
+
+Rp79EmKvORxaMSQd
+Résumé de ton dictionnaire de Pro :Mot-cléAnalogie RobloxCe que ça fait vraimentStatelessUn bloc de déco simple.Un widget qui ne change jamais d'aspect.StatefulUn script avec des variables (Cash, Temps).Un widget qui peut se redessiner (setState).finalUne valeur fixée quand le serveur démarre.Fixé une seule fois, mais peut être calculé plus tard.constUn réglage d'usine (Gravity, MaxPlayers).Fixé pour toujours, connu à l'avance.extendsUtiliser un "Template" de base.Copier les capacités d'une autre classe.@overrideModifier un script de base.Remplacer une fonction par la tienne.
