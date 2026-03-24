@@ -3,15 +3,16 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'screens/splash_screen.dart'; 
 
-// Correction : BIEN ECRIRE "Future" avec un "e"
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // On charge le fichier
   await dotenv.load(fileName: ".env");
 
+  // On vérifie que les noms correspondent EXACTEMENT à ton fichier .env
   await Supabase.initialize(
-    // Correction : Ajout du "!" pour le type String
     url: dotenv.env['SUPABASE_URL']!,
-    anonKey: dotenv.env['SUPABASE_KEY']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!, // Vérifie si c'est KEY ou ANON_KEY dans ton .env
   );
 
   runApp(const MyApp());
