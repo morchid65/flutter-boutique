@@ -1,76 +1,73 @@
 # 🛒 My Restaurant - Boutique Flutter (Projet BLOC 2)
 
+> **Note du Chef :** Développé par un expert de *My Restaurant* sur Roblox, mais un pur **Noob** en Flutter (pour l'instant).
+
 ![Aperçu du Projet](./flutter_boutique.png)
 
 ## 🎯 Vision du Projet
-Ce projet est une application de E-commerce développée avec Flutter. L'objectif est d'allier une interface fluide à une architecture solide, en suivant la méthodologie **TDD (Test Driven Development)** et les principes du **Clean Code**.
+Ce projet est une application de E-commerce développée avec Flutter. L'objectif est de passer du statut de **Noob** à celui de Pro en alliant une interface fluide à une architecture solide, en suivant la méthodologie **TDD (Test Driven Development)** et les principes du **Clean Code**.
 
 ---
 
 ## 🏗️ Architecture & Organisation (Qui fait quoi ?)
 
-Pour maîtriser le flux de données, nous utilisons l'analogie d'un **Restaurant** :
+Pour maîtriser le flux de données, nous utilisons l'analogie d'un **Restaurant** (concept que notre Noob maîtrise mieux sur Roblox que dans VS Code) :
 
 | Fichier | Emplacement | Rôle (Analogie) | Pourquoi c'est important ? |
 | :--- | :--- | :--- | :--- |
 | **main.dart** | `lib/` | **Le Directeur** | Il vérifie les clés du resto (`.env`) et lance l'ouverture. |
 | **product.dart** | `lib/models/` | **La Fiche Technique** | Définit ce qu'est un "Plat" (nom, prix, photo). |
+| **cart_item.dart** | `lib/models/` | **Le Bon de Commande** | Associe un plat à une quantité précise. |
 | **api_service.dart** | `lib/services/` | **Le Fournisseur** | Il fait le trajet jusqu'à l'entrepôt (API) pour ramener les produits. |
-| **splash_screen.dart** | `lib/screens/` | **Le Hall d'entrée** | Fait patienter le client 2 sec avec un joli logo orange. |
-| **home_screen.dart** | `lib/screens/` | **Le Menu / La Salle** | Affiche la liste des plats une fois qu'ils ont été livrés. |
+| **cart_service.dart**| `lib/services/` | **Le Serveur / La Caisse**| Garde en mémoire ce que le client a choisi. |
+| **home_screen.dart** | `lib/screens/` | **Le Menu / La Salle** | Affiche la liste des plats une fois livrés. |
+| **cart_screen.dart** | `lib/screens/` | **L'Addition / Le Panier** | Affiche le récapitulatif et calcule le total final. |
 
 ---
 
 ## 🍽️ Concept : My Restaurant (Logique du Code)
 
-* **Models (`lib/models`)** : Les fiches recettes (Ingrédients d'un plat).
-* **Services (`lib/services`)** : Le livreur (récupère les stocks via API externe).
-* **Supabase** : Le siège social (stocke les clients et les commandes).
-* **Screens (`lib/screens`)** : La salle de restauration (l'interface utilisateur).
+* **Models (`lib/models`)** : Les recettes. Même un **Noob** sait qu'on ne fait pas de burger sans pain.
+* **Services (`lib/services`)** : Le personnel qui bosse en cuisine et à la caisse.
+* **Supabase** : Le coffre-fort du resto (données clients et commandes).
+* **Screens (`lib/screens`)** : La décoration et les tables où s'assoient les clients.
 
 ---
 
-## 🛡️ Infrastructure & Sécurité
-
-* **🔐 Sécurité** : Utilisation d'un fichier `.env` pour les clés API Supabase (masqué par `.gitignore`).
-* **📊 Conception (MCD)** : Modélisation via **Looping** pour définir les relations entre Utilisateurs, Produits, Panier et Historique.
-* **🚀 Main** : Initialisation asynchrone de Supabase et chargement des variables d'environnement au démarrage.
-
----
-
-## 🛠️ État d'avancement du Chantier
+## 🛠️ État d'avancement du Chantier (Spécial Noob)
 
 ### ✅ Étape 0 : Infrastructure (Fait)
 - [x] Setup du projet Flutter et intégration `supabase_flutter`.
 - [x] Configuration du `main.dart` (Chargement `.env` et Router).
-- [x] Modélisation de la BDD sur Looping.
 
 ### ✅ Étape 1 : Modélisation & Qualité (Fait)
 - [x] **Model (product.dart)** : Création du moule avec factory `fromJson`.
-- [x] **Clean Code** : Nommage explicite et typage fort (Prix en `double`).
-- [x] **TDD** : Mise en place des tests unitaires pour valider les modèles.
+- [x] **TDD** : Mise en place des tests pour prouver qu'on n'est plus totalement un noob.
 
-### ⏳ Étape 2 : Services & Flux (En cours)
+### ✅ Étape 2 : Services & Flux (Fait)
 - [x] **ApiService** : Récupération des données réelles depuis Platzi API.
-- [x] **Interface** : Création de la `ListView` (Home Screen).
-- [ ] **Gestion du Panier** : Simulation d'achat et historique (CRUD).
+- [x] **Gestion du Panier** : Le `CartService` (Singleton) gère enfin les commandes.
+- [x] **Navigation** : On peut enfin aller à la caisse (CartScreen).
+
+### ⏳ Étape 3 : Finalisation (À venir)
+- [ ] **Suppression** : Apprendre à jeter les plats brûlés (Supprimer du panier).
+- [ ] **Persistence** : Garder les données même après la fermeture du resto.
 
 ---
 
-## 📚 Dictionnaire de Pro (Récapitulatif)
+## 📚 Dictionnaire du Noob (Récapitulatif)
 
 | Mot-clé | Analogie Restaurant | Ce que ça fait vraiment |
 | :--- | :--- | :--- |
-| **Stateless** | Déco fixe (Table) | Widget qui ne change jamais d'aspect. |
-| **Stateful** | Caisse (Argent bouge) | Widget qui se redessine via `setState`. |
-| **final** | Plat servi (fixé) | Valeur fixée une seule fois à l'exécution. |
-| **const** | Réglage usine (Gravité) | Valeur immuable connue à la compilation. |
-| **factory** | Traducteur de commande | Crée un objet structuré à partir du JSON brut. |
-| **@override** | Spécialité du chef | Remplace une fonction de base par la nôtre. |
+| **Static** | Mémoire du serveur | Variable partagée, accessible partout sans recréer d'objet. |
+| **Navigator** | La porte entre la salle et la caisse | Gère le passage (`push/pop`) d'un écran à un autre. |
+| **Ternaire (`? :`)** | "Il reste du rab ?" | Affiche un widget différent selon une condition (ex: Panier vide). |
+| **Expanded** | Table à rallonge | Force un widget à prendre toute la place disponible. |
+| **factory** | Traducteur de commande | Transforme du JSON brut en bel objet Dart. |
 
 ---
 
 ## 🧪 Qualité & Tests
-Pour garantir que nos "recettes" sont toujours bonnes, nous lançons les tests :
+Même si tu es un expert Roblox, ici on teste pour ne pas passer pour un noob :
 ```bash
-flutter test 
+flutter test
