@@ -1,73 +1,72 @@
-# 🛒 My Restaurant - Boutique Flutter (Projet BLOC 2)
-
-> `**Note du Chef :** Développé par un expert de *My Restaurant* sur Roblox, mais un pur **Noob** en Flutter (pour l'instant).`
+# 🛒 EatSmart - Boutique E-commerce (Flutter & Dart)
 
 ![Aperçu du Projet](./flutter_boutique.png)
 
 ## 🎯 Vision du Projet
-Ce projet est une application de E-commerce développée avec Flutter. L'objectif est de passer du statut de **Noob** à celui de Pro en alliant une interface fluide à une architecture solide, en suivant la méthodologie **TDD (Test Driven Development)** et les principes du **Clean Code**.
+Ce projet est une application mobile de E-commerce développée avec Flutter. L'objectif est de concevoir une interface utilisateur fluide couplée à une architecture logicielle robuste. Le développement suit la méthodologie **TDD (Test Driven Development)** et respecte les principes du **Clean Code** pour garantir la maintenabilité du système.
 
 ---
 
-## 🏗️ Architecture & Organisation (Qui fait quoi ?)
+## 🏗️ Architecture & Organisation
 
-Pour maîtriser le flux de données, nous utilisons l'analogie d'un **Restaurant** (concept que notre Noob maîtrise mieux sur Roblox que dans VS Code) :
+Le projet est structuré selon une séparation claire des responsabilités pour faciliter la gestion du flux de données :
 
-| Fichier | Emplacement | Rôle (Analogie) | Pourquoi c'est important ? |
+| Fichier | Emplacement | Rôle Technique | Description |
 | :--- | :--- | :--- | :--- |
-| **main.dart** | `lib/` | **Le Directeur** | Il vérifie les clés du resto (`.env`) et lance l'ouverture. |
-| **product.dart** | `lib/models/` | **La Fiche Technique** | Définit ce qu'est un "Plat" (nom, prix, photo). |
-| **cart_item.dart** | `lib/models/` | **Le Bon de Commande** | Associe un plat à une quantité précise. |
-| **api_service.dart** | `lib/services/` | **Le Fournisseur** | Il fait le trajet jusqu'à l'entrepôt (API) pour ramener les produits. |
-| **cart_service.dart**| `lib/services/` | **Le Serveur / La Caisse**| Garde en mémoire ce que le client a choisi. |
-| **home_screen.dart** | `lib/screens/` | **Le Menu / La Salle** | Affiche la liste des plats une fois livrés. |
-| **cart_screen.dart** | `lib/screens/` | **L'Addition / Le Panier** | Affiche le récapitulatif et calcule le total final. |
+| **main.dart** | `lib/` | **Point d'entrée** | Initialise les variables d'environnement (`.env`) et configure le routeur. |
+| **product.dart** | `lib/models/` | **Modèle de données** | Définit la structure d'un produit (nom, prix, image). |
+| **cart_item.dart** | `lib/models/` | **Modèle de panier** | Associe un produit à une quantité spécifique. |
+| **api_service.dart** | `lib/services/` | **Data Provider** | Gère les requêtes HTTP asynchrones vers l'API externe. |
+| **cart_service.dart**| `lib/services/` | **Business Logic** | Gère l'état global du panier et la logique métier associée. |
+| **home_screen.dart** | `lib/screens/` | **Interface UI** | Présente la liste des produits récupérés via l'API. |
+| **cart_screen.dart** | `lib/screens/` | **Interface UI** | Affiche le récapitulatif de la commande et le calcul du total. |
 
 ---
 
-## 🍽️ Concept : My Restaurant (Logique du Code)
+## 🍽️ Concept Technique
 
-* **Models (`lib/models`)** : Les recettes. Même un **Noob** sait qu'on ne fait pas de burger sans pain.
-* **Services (`lib/services`)** : Le personnel qui bosse en cuisine et à la caisse.
-* **Supabase** : Le coffre-fort du resto (données clients et commandes).
-* **Screens (`lib/screens`)** : La décoration et les tables où s'assoient les clients.
-
----
-
-## 🛠️ État d'avancement du Chantier (Spécial Noob)
-
-### ✅ Étape 0 : Infrastructure (Fait)
-- [x] Setup du projet Flutter et intégration `supabase_flutter`.
-- [x] Configuration du `main.dart` (Chargement `.env` et Router).
-
-### ✅ Étape 1 : Modélisation & Qualité (Fait)
-- [x] **Model (product.dart)** : Création du moule avec factory `fromJson`.
-- [x] **TDD** : Mise en place des tests pour prouver qu'on n'est plus totalement un noob.
-
-### ✅ Étape 2 : Services & Flux (Fait)
-- [x] **ApiService** : Récupération des données réelles depuis Platzi API.
-- [x] **Gestion du Panier** : Le `CartService` (Singleton) gère enfin les commandes.
-- [x] **Navigation** : On peut enfin aller à la caisse (CartScreen).
-
-### ⏳ Étape 3 : Finalisation (À venir)
-- [ ] **Suppression** : Apprendre à jeter les plats brûlés (Supprimer du panier).
-- [ ] **Persistence** : Garder les données même après la fermeture du resto.
+* **Models (`lib/models`)** : Représentation des objets métiers et gestion de la sérialisation JSON.
+* **Services (`lib/services`)** : Couche d'abstraction pour l'accès aux données (API) et la gestion d'état.
+* **Supabase / Backend** : Stockage persistant des données utilisateurs et des commandes.
+* **Screens (`lib/screens`)** : Composants visuels et gestion de l'expérience utilisateur (UX).
 
 ---
 
-## 📚 Dictionnaire du Noob (Récapitulatif)
+## 🛠️ État d'avancement du Projet
 
-| Mot-clé | Analogie Restaurant | Ce que ça fait vraiment |
+### ✅ Phase 1 : Infrastructure & Backend
+- [x] Initialisation du projet Flutter et intégration de `supabase_flutter`.
+- [x] Configuration du `main.dart` et gestion des variables d'environnement.
+
+### ✅ Phase 2 : Modélisation & Qualité
+- [x] **Product Model** : Implémentation du pattern `factory` pour le parsing JSON.
+- [x] **TDD** : Mise en place d'une suite de tests unitaires pour valider la logique métier.
+
+### ✅ Phase 3 : Flux de données & Navigation
+- [x] **ApiService** : Intégration de l'API externe avec gestion des erreurs.
+- [x] **Cart Logic** : Implémentation du `CartService` (Pattern Singleton).
+- [x] **Navigation** : Routage dynamique entre le catalogue et le panier.
+
+### ⏳ Phase 4 : Finalisation
+- [ ] **Gestion avancée du panier** : Suppression d'articles et mise à jour des quantités.
+- [ ] **Persistance locale** : Sauvegarde de l'état du panier entre les sessions.
+
+---
+
+## 📚 Glossaire Technique
+
+| Mot-clé | Définition | Application dans le projet |
 | :--- | :--- | :--- |
-| **Static** | Mémoire du serveur | Variable partagée, accessible partout sans recréer d'objet. |
-| **Navigator** | La porte entre la salle et la caisse | Gère le passage (`push/pop`) d'un écran à un autre. |
-| **Ternaire (`? :`)** | "Il reste du rab ?" | Affiche un widget différent selon une condition (ex: Panier vide). |
-| **Expanded** | Table à rallonge | Force un widget à prendre toute la place disponible. |
-| **factory** | Traducteur de commande | Transforme du JSON brut en bel objet Dart. |
+| **Static** | Membre de classe | Utilisé pour partager des constantes ou des méthodes utilitaires. |
+| **Navigator** | API de navigation | Gère la pile d'écrans (`push/pop`) pour la navigation. |
+| **Ternaire** | Opérateur conditionnel | Utilisé pour l'affichage conditionnel (ex: panier vide vs plein). |
+| **Expanded** | Widget de mise en page | Permet à un composant de saturer l'espace disponible dans une FlexBox. |
+| **factory** | Constructeur spécifique | Utilisé pour transformer des données brutes (Map) en objets typés. |
 
 ---
 
 ## 🧪 Qualité & Tests
-Même si tu es un expert Roblox, ici on teste pour ne pas passer pour un noob :
+La fiabilité du code est assurée par des tests automatisés :
 ```bash
+# Lancer la suite de tests unitaires
 flutter test
