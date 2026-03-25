@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
 import '../services/cart_service.dart';
+import 'cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              // On fera la navigation vers la page Panier ici
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CartScreen()),
+                );
             },
           )
         ],
@@ -81,3 +85,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
