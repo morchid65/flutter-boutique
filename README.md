@@ -1,6 +1,6 @@
 # 🛒 My Restaurant - Boutique Flutter (Projet BLOC 2)
 
-> **Note du Chef :** Développé par un expert de *My Restaurant* sur Roblox, mais un pur **Noob** en Flutter (pour l'instant).
+> `**Note du Chef :** Développé par un expert de *My Restaurant* sur Roblox, mais un pur **Noob** en Flutter (pour l'instant).`
 
 ![Aperçu du Projet](./flutter_boutique.png)
 
