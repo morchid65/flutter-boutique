@@ -26,4 +26,4 @@ flutter:
   
   # --- FICHIERS ASSETS ---
   assets:
-    - .env
+    - .env 

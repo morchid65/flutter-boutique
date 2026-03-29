@@ -3,6 +3,7 @@ import '../models/product.dart';
 import '../services/api_service.dart';
 import '../services/cart_service.dart';
 import 'cart_screen.dart';
+import 'product_detail_screen.dart'; // ✅ L'import indispensable pour que ça marche
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,15 +21,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Le menu du Resto"),
         backgroundColor: Colors.orange,
-        // ✅ 2. Ajout d'un bouton pour aller voir le panier plus tard
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CartScreen()),
-                );
+                MaterialPageRoute(builder: (context) => const CartScreen()),
+              );
             },
           )
         ],
@@ -49,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 final product = products[index];
                 return ListTile(
-                  // ✅ 3. On met l'image au début (leading) pour libérer la place à droite
                   leading: Image.network(
                     product.imageUrl,
                     width: 50,
@@ -59,14 +58,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   title: Text(product.title),
                   subtitle: Text("${product.price} €"),
-                  // ✅ 4. Le bouton d'ajout (trailing)
+                  
+                  // ✅ LE CLIC POUR ALLER AUX DÉTAILS
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailScreen(product: product),
+                      ),
+                    );
+                  },
+
                   trailing: IconButton(
                     icon: const Icon(Icons.add_shopping_cart, color: Colors.orange),
                     onPressed: () {
-                      // Action : Appel du service
                       CartService.addProduct(product);
-                      
-                      // Feedback : On prévient l'utilisateur
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text("${product.title} ajouté !"),

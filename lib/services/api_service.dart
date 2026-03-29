@@ -1,24 +1,19 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/product.dart';
 
 class ApiService {
-  // L'adresse du grossiste (API Platzi)
-  final String baseUrl = "https://api.escuelajs.co/api/v1/products";
+  // ✅ On utilise le client Supabase au lieu de l'URL http
+  final _supabase = Supabase.instance.client;
 
-  // Fonction pour récupérer la liste des plats
   Future<List<Product>> getProducts() async {
-    final response = await http.get(Uri.parse(baseUrl));
+    try {
+      // ✅ On récupère les données de TA table 'produit'
+      final List<dynamic> data = await _supabase.from('produit').select();
 
-    if (response.statusCode == 200) {
-      // Si la livraison est ok (code 200)
-      List<dynamic> body = jsonDecode(response.body);
-
-      // On transforme le texte brut en liste d'objets "Product"
-      return body.map((item) => Product.fromJson(item)).toList();
-    } else { 
-      // Si le livreur est perdu
-      throw Exception("Impossible de charger les produits");
+      // ✅ On transforme les lignes SQL en objets Product
+      return data.map((item) => Product.fromSupabase(item)).toList();
+    } catch (e) {
+      throw Exception("Erreur Supabase : $e");
     }
   }
 }
