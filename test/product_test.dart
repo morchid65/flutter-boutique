@@ -2,24 +2,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_boutique/models/product.dart';
 
 void main() {
-  // On définit un test 
-  test('Le modèle Product doit transformer le JSON correctement', () {
-    // 1. On prépare un faux morceau de texte (JSON)
+  test('Vérification de la conversion SQL -> Product', () {
     final map = {
-      "id":1,
-      "title": "Burger Gourmet",
-      "price": 12.5,
-      "description": "Un burger magnifique",
-      "images": ["https://photo.com/burger.jpg"]
+      "id_produit": 1,
+      "titre": "Manette Razer",
+      "prix": 150.0,
+      "description": "Top qualité",
+      "image_url": "https://img.com/razer.jpg"
     };
 
-    // 2. On utilise notre "moule" Product
-    final product = Product.fromJson(map);
+    final product = Product.fromSupabase(map);
 
-    // 3. on vérifie que les données sont bien à leur place 
+    expect(product.title, "Manette Razer");
+    expect(product.price, 150.0);
     expect(product.id, 1);
-    expect(product.title, "Burger Gourmet");
-    expect(product.price, 12.5);
-    expect(product.imageUrl, ["https://photo.com/burger.jpg"]);
   });
 }
