@@ -9,8 +9,11 @@ import 'services/favorite_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // 1. On charge les clés secrètes du restau
   await dotenv.load(fileName: ".env");
 
+  // 2. On connecte la brigade à la cave Supabase
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!, 
@@ -18,7 +21,17 @@ Future<void> main() async {
 
   final supabase = Supabase.instance.client;
 
-  // 🚀 INJECTION CORRIGÉE (SANS LE CHAMP DESCRIPTION QUI BUGUE)
+  // 3. LE MAÎTRE DES FAVORIS : On remplit l'ardoise si le client est déjà là
+  if (supabase.auth.currentSession != null) {
+    try {
+      await FavoriteService.fetchFavorites();
+      debugPrint("⭐ Ardoise des favoris prête !");
+    } catch (e) {
+      debugPrint("⚠️ Impossible de charger les favoris : $e");
+    }
+  }
+
+  // 4. L'INJECTION : On s'assure qu'il y a au moins un plat au menu
   try {
     final response = await supabase.from('produit').select();
     if ((response as List).isEmpty) {
@@ -28,12 +41,13 @@ Future<void> main() async {
         'image_url': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500',
         'categorie': 'Plats',
       });
-      debugPrint("✅ Produit injecté avec succès !");
+      debugPrint("✅ Premier burger mis en vitrine !");
     }
   } catch (e) {
-    debugPrint("❌ Erreur injection : $e");
+    debugPrint("❌ Erreur lors de la mise en place du menu : $e");
   }
 
+  // 5. RIDEAU ! On lance l'appli
   runApp(const MyApp());
 }
 
