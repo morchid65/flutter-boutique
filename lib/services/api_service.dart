@@ -1,19 +1,24 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/material.dart';
 import '../models/product.dart';
 
 class ApiService {
-  // ✅ On utilise le client Supabase au lieu de l'URL http
-  final _supabase = Supabase.instance.client;
-
   Future<List<Product>> getProducts() async {
-    try {
-      // ✅ On récupère les données de TA table 'produit'
-      final List<dynamic> data = await _supabase.from('produit').select();
-
-      // ✅ On transforme les lignes SQL en objets Product
-      return data.map((item) => Product.fromSupabase(item)).toList();
-    } catch (e) {
-      throw Exception("Erreur Supabase : $e");
-    }
+    // 🧪 Simulation de délai réseau
+    await Future.delayed(const Duration(milliseconds: 500));
+    
+    return [
+      Product(
+        id: 1,
+        title: "Burger Gourmet",
+        price: 14.50,
+        imageUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500",
+      ),
+      Product(
+        id: 2,
+        title: "Frites Maison",
+        price: 4.00,
+        imageUrl: "https://images.unsplash.com/photo-1573016608244-7d5f8540ed18?w=500",
+      ),
+    ];
   }
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // ✅ Pour lire le Post-it
-import 'onboarding_screen.dart'; // ✅ Pour envoyer vers la présentation
-import 'main_screen.dart'; // ✅ Pour envoyer vers l'accueil principal
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,50 +12,30 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToNext(); // On appelle la fonction d'aiguillage
+    _checkUser();
   }
 
-  // ✅ La fonction qui décide du chemin
-  Future<void> _navigateToNext() async {
-    // 1. On attend 3 secondes pour laisser le temps de voir le logo
-    await Future.delayed(const Duration(seconds: 3)); 
+  Future<void> _checkUser() async {
+    await Future.delayed(const Duration(seconds: 2)); // Petit délai stylé
+    final session = Supabase.instance.client.auth.currentSession;
 
-    // 2. On ouvre le coffre-fort des préférences locales
-    final prefs = await SharedPreferences.getInstance();
-    
-    // 3. On regarde si on doit afficher l'onboarding (vrai par défaut)
-    final bool showOnboarding = prefs.getBool('showOnboarding') ?? true;
-
-    if (!mounted) return; // Sécurité Flutter
-
-    if (showOnboarding) {
-      // Direction la présentation
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
-      );
+    if (session != null) {
+      if (mounted) Navigator.pushReplacementNamed(context, '/home');
     } else {
-      // Direction le menu principal (MainScreen gère le bas de l'écran)
-      Navigator.pushReplacementNamed(context, '/home');
+      if (mounted) Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.orange,
-      body: Center( 
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.restaurant_menu, size: 80, color: Colors.white),
+            Icon(Icons.fastfood, size: 80, color: Colors.orange),
             SizedBox(height: 20),
-            Text(
-              "My Restaurant",
-              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            CircularProgressIndicator(color: Colors.white),
+            CircularProgressIndicator(color: Colors.orange),
           ],
         ),
       ),
