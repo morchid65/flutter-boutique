@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'favorites_screen.dart';
 import 'cart_screen.dart';
+import '../services/favorite_service.dart'; 
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -23,13 +24,20 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex], // On affiche l'écran correspondant à l'index
+      // On utilise IndexedStack pour garder l'état ou on change d'approche
+      body: _screens[_selectedIndex], 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(() {
-            _selectedIndex = index; // On change d'onglet au clic
+            _selectedIndex = index;
           });
+          
+          // 💡 PETITE ASTUCE : Si on clique sur l'onglet Favoris (index 1),
+          // on peut forcer un petit refresh si nécessaire.
+          if (index == 1) {
+             FavoriteService.fetchFavorites(); 
+          }
         },
         selectedItemColor: Colors.orange,
         items: const [
