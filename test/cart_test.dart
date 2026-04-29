@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_boutique/services/cart_service.dart';
+import 'package:flutter_boutique/providers/cart_provider.dart';
 import 'package:flutter_boutique/models/product.dart';
 
 void main() {

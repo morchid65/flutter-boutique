@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:provider/provider.dart'; // 1. On importe le package Provider
+import 'providers/cart_provider.dart'; // 2. Ton nouveau "cerveau" automatique
 import 'screens/splash_screen.dart';
 import 'screens/main_screen.dart';
 import 'screens/auth_screen.dart';
@@ -22,7 +24,16 @@ Future<void> main() async {
     await FavoriteService.fetchFavorites();
   }
 
-  runApp(const MyApp());
+  // 3. On entoure l'app avec MultiProvider pour centraliser l'IA
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        // On pourra ajouter FavoriteProvider plus tard ici sans tout casser !
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
