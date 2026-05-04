@@ -1,20 +1,37 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../models/cart_item.dart';
+import '../models/product.dart';
+import '../models/cart_item.dart'; // <--- On importe la "boîte"
 
 class CartService {
-  final _supabase = Supabase.instance.client;
+  static final _supabase = Supabase.instance.client;
+  
+  // 1. La liste contient maintenant des BOÎTES (CartItem)
+  static List<CartItem> items = [];
 
-  // C'est ici qu'on ajoutera plus tard la logique pour enregistrer 
-  // la commande dans les tables 'histo_panier' et 'contenir'
-  Future<void> saveOrderToSupabase(List<CartItem> items, double total) async {
+  // 2. Le total utilise la quantité de la boîte
+  static double get totalPrice {
+    return items.fold(0, (sum, box) => sum + (box.product.price * box.quantity));
+  }
+
+  // 3. Ajouter un produit
+  static void addProduct(Product p) {
+    // On cherche si on a déjà une boîte avec ce produit dedans
+    int index = items.indexWhere((box) => box.product.id == p.id);
+
+    if (index != -1) {
+      // Si oui, on augmente le chiffre sur la boîte
+      items[index].quantity++;
+    } else {
+      // Si non, on crée une nouvelle boîte pour ce produit
+      items.add(CartItem(product: p, quantity: 1));
+    }
+  }
+
+  // Le reste (Supabase) ne change pas
+  Future<void> saveOrderToSupabase(double total) async {
     try {
       final userId = _supabase.auth.currentUser?.id;
       if (userId == null) return;
-
-      // 1. On crée l'entrée dans histo_panier (L'entête de la commande)
-      // 2. On récupère l'ID
-      // 3. On boucle sur 'items' pour remplir la table 'contenir'
-      
       print("Commande de $total € envoyée pour l'utilisateur $userId");
     } catch (e) {
       print("Erreur lors de la sauvegarde : $e");
