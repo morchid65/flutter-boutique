@@ -40,18 +40,51 @@ Pour maîtriser le flux de données, nous utilisons l'analogie d'un **Restaurant
 
 ---
 
-## 🔐 Sécurité & Configuration
+## 🔐 Fichier `.env` : Le Lien de Connexion à Supabase
 
-L'accès à la base de données est protégé par un fichier `.env` (jamais commité).
+### Qu'est-ce qu'un fichier `.env` ?
+
+Le fichier `.env` (Environment variables - Variables d'environnement) est un fichier de configuration **sécurisé et privé** qui contient les identifiants nécessaires pour connecter votre application Flutter à Supabase.
+
+### À quoi ça sert concrètement ?
+
+Lorsque votre application démarre, elle doit **identifier** :
+- **Quel projet Supabase utiliser** (via l'URL du projet)
+- **Quelle clé API utiliser** pour y accéder (authentification)
+
+Sans ces identifiants, l'application ne peut pas :
+- Récupérer les données des produits
+- Synchroniser les données du panier
+- Interagir avec la base de données
+
+**C'est le lien qui "réveille" Supabase et lui dit : "C'est MOI, le projet X, et voici ma clé pour accéder aux données".**
+
+### Pourquoi c'est sécurisé ?
+
+- ✅ Le `.env` est **jamais** commité sur GitHub (listée dans `.gitignore`)
+- ✅ Seules les personnes autorisées qui ont les clés Supabase peuvent faire fonctionner l'app
+- ✅ C'est comme avoir mille portes, mais une seule est la bonne — sans la clé correcte, on ne peut pas entrer
+- ✅ Les données restent protégées et accessibles uniquement via les identifiants valides
 
 ### Exemple de fichier `.env`
 
 ```env
 SUPABASE_URL=https://votre-projet.supabase.co
-SUPABASE_ANON_KEY=votre-cle-api-secrete
+SUPABASE_ANON_KEY=votre-cle-api-secrete-ici
 ```
 
-⚠️ **Important :** Le fichier `.env` est listé dans `.gitignore` pour rester privé et sécurisé.
+**⚠️ Important :** 
+- Ne JAMAIS commiter ce fichier
+- Ne JAMAIS partager vos clés Supabase publiquement
+- Chaque développeur doit avoir son propre `.env` avec les bonnes clés
+
+### Récupérer vos clés Supabase
+
+1. Allez sur [supabase.com](https://supabase.com)
+2. Connectez-vous à votre projet
+3. Allez dans **Settings** → **API**
+4. Copiez l'**URL du projet** et la **Anon Public Key**
+5. Collez-les dans votre `.env` local
 
 ---
 
