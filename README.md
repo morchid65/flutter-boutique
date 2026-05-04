@@ -2,6 +2,7 @@
 
 > **Note du Chef :** Développé par un expert de *My Restaurant* sur Roblox, mais un pur Noob en Flutter (pour l'instant). On progresse vers le grade d'Architecte !
 
+![Aperçu du Projet](./flutter_boutique.png)
 ---
 
 ## 🎯 Vision du Projet
