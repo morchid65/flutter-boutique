@@ -6,22 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
       
       # 1. On installe les dépendances
-      - run: flutter pub get[cite: 1]
+      - run: flutter pub get
       
-      # 2. On vérifie la propreté du code (ton fameux flutter analyze)
-      - run: flutter analyze[cite: 1]
+      # 2. On vérifie la propreté du code
+      - run: flutter analyze
       
-      # 3. On lance les tests ET on génère la couverture
-      - run: flutter test --coverage[cite: 1]
+      # 3. On lance les tests et on génère la couverture
+      - run: flutter test --coverage
       
       # 4. On envoie le résultat à Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # À configurer dans les réglages GitHub
+          token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage/lcov.info
