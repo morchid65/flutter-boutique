@@ -32,7 +32,7 @@ class CartService {
     try {
       final userId = _supabase.auth.currentUser?.id;
       if (userId == null) return;
-      print("Commande de $total € envoyée pour l'utilisateur $userId");
+      Debugprint("Commande de $total € envoyée pour l'utilisateur $userId");
     } catch (e) {
       print("Erreur lors de la sauvegarde : $e");
       rethrow;
