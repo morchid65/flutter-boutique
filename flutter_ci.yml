@@ -1,0 +1,14 @@
+name: Flutter CI
+on: [push, pull_request] # Se lance à chaque fois que tu envoies du code
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter analyze # Vérifie les erreurs de frappe
+      - run: flutter test    # Lance tous tes tests (Thomas, Unit, etc.)
