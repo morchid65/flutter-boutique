@@ -4,6 +4,8 @@
 
 ![Aperçu du Projet](./flutter_boutique.png)
 
+[![Flutter CI & Codecov](https://github.com/morchid65/flutter-boutique/actions/workflows/main.yaml/badge.svg)](https://github.com/morchid65/flutter-boutique/actions/workflows/main.yaml)
+
 ---
 
 ## 🎯 Vision du Projet
