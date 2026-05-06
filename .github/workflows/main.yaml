@@ -10,7 +10,14 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+      - uses: actions/checkout@v3
       
+      # AJOUTE CETTE LIGNE ICI :
+      - run: touch .env
+      
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
       # 1. On installe les dépendances
       - run: flutter pub get
       
