@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/product.dart';
 import '../models/cart_item.dart'; // <--- On importe la "boîte"
@@ -32,9 +33,9 @@ class CartService {
     try {
       final userId = _supabase.auth.currentUser?.id;
       if (userId == null) return;
-      Debugprint("Commande de $total € envoyée pour l'utilisateur $userId");
+      debugPrint("Commande de $total € envoyée pour l'utilisateur $userId");
     } catch (e) {
-      print("Erreur lors de la sauvegarde : $e");
+      debugPrint("Erreur lors de la sauvegarde : $e");
       rethrow;
     }
   }
