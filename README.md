@@ -6,7 +6,7 @@
 
 [![Flutter CI & Codecov](https://github.com/morchid65/flutter-boutique/actions/workflows/main.yaml/badge.svg)](https://github.com/morchid65/flutter-boutique/actions/workflows/main.yaml)
 
-[![codecov](https://codecov.io/gh/morchid65/serie_liste_flutter/branch/main/graph/badge.svg)](https://codecov.io/gh/morchid65/serie_liste_flutter)
+[![codecov](https://codecov.io/gh/morchid65/flutter-boutique/graph/badge.svg?token=MOYFQJUVS8)](https://codecov.io/gh/morchid65/flutter-boutique)
 ---
 
 ## 🎯 Vision du Projet
