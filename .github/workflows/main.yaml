@@ -12,7 +12,6 @@ jobs:
           channel: 'stable'
       - uses: actions/checkout@v3
       
-      # AJOUTE CETTE LIGNE ICI :
       - run: touch .env
       
       - uses: subosito/flutter-action@v2
